@@ -5,6 +5,7 @@
 'Ability to customize the list of human resource tracked at a Shelter': 'Ability to customise the list of human resource tracked at a Shelter',
 'Ability to customize the list of important facilities needed at a Shelter': 'Ability to customise the list of important facilities needed at a Shelter',
 "Acronym of the organization's name, eg. IFRC.": "Acronym of the organisation's name, eg. IFRC.",
+'ACTION REQUIRED': 'ACTION REQUIRED',
 'Add a new program to the catalog.': 'Add a new programme to the catalog.',
 'Add all organizations which are involved in different roles in this project': 'Add all organisations which are involved in different roles in this project',
 'Add Branch Organization': 'Add New Branch Organisation',
@@ -212,6 +213,7 @@
 'User Guidelines Synchronization': 'User Guidelines Synchronisation',
 'Utilization Report': 'Utilisation Report',
 'Volunteer Role Catalog': 'Volunteer Role Catalogue',
+'WARNING': 'WARNING',
 'Work on Program': 'Work on Programme',
 'Year that the organization was founded': 'Year that the organisation was founded',
 }
