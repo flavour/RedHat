@@ -316,6 +316,7 @@ def config(settings):
         {"pr_person.middle_name"                     : (CVTL, VNRC),
          "pr_person_details.mother_name"             : (BRCS, ),
          "pr_person_details.father_name"             : (ARCS, BRCS),
+         "pr_person_details.grandfather_name"        : (ARCS, ),
          "pr_person_details.affiliations"            : (PRC, ),
          "pr_person_details.company"                 : (PRC, ),
          "vol_details.availability"                  : (VNRC, ),
@@ -729,6 +730,40 @@ def config(settings):
             return {}
 
     # -----------------------------------------------------------------------------
+    # Org-dependent settings
+    # => lazy settings because they require user authentication
+    #
+    def hide_third_gender(default):
+        """ Whether to hide the third person gender """
+
+        root_org = current.auth.root_org_name()
+        if root_org == NRCS:
+            return False
+        return default
+
+    settings.pr.hide_third_gender = hide_third_gender
+
+    def training_instructors(default):
+        """ Whether to track internal/external training instructors """
+
+        root_org = current.auth.root_org_name()
+        if root_org == NRCS:
+            return "both"
+        return default
+
+    settings.hrm.training_instructors = training_instructors
+
+    def location_filter_bulk_select_option(default):
+        """ Whether to show a bulk select option in location filters """
+
+        root_org = current.auth.root_org_name()
+        if root_org == VNRC:
+            return True
+        return default
+
+    settings.ui.location_filter_bulk_select_option = location_filter_bulk_select_option
+
+    # -------------------------------------------------------------------------
     def customise_asset_asset_controller(**attr):
 
         tablename = "asset_asset"
@@ -1548,9 +1583,11 @@ def config(settings):
                 # Add gender-filter
                 gender_opts = dict(s3db.pr_gender_opts)
                 del gender_opts[1]
+                if settings.hide_third_gender():
+                    del gender_opts[4]
                 append_widget(S3OptionsFilter("person_id$gender",
                                               options = gender_opts,
-                                              cols = 2,
+                                              cols = 3,
                                               hidden = True,
                                               ))
                 # Add Roster status filter
@@ -1777,6 +1814,14 @@ def config(settings):
             settings.hrm.vol_active = True
         elif root_org in (CVTL, PMI, PRC):
             settings.hrm.vol_active = vol_active
+        elif root_org == NRCS:
+            # Don't allow creating of Persons here
+            from gluon import DIV
+            T = current.T
+            current.s3db.hrm_training.person_id.comment = \
+                DIV(_class="tooltip",
+                    _title="%s|%s" % (T("Participant"),
+                                      T("Type the first few characters of one of the Participant's names.")))
         elif root_org == VNRC:
             settings.pr.name_format = "%(last_name)s %(middle_name)s %(first_name)s"
             # Remove link to download Template
@@ -2411,11 +2456,7 @@ def config(settings):
                         # Use default form (legacy)
                         s3db.clear_config("hrm_human_resource", "crud_form")
 
-            if arcs:
-                if not r.component:
-                    s3db.pr_person_details.father_name.label = T("Name of Grandfather")
-
-            elif vnrc:
+            if vnrc:
                 controller = r.controller
                 if not r.component:
                     crud_fields = ["first_name",

@@ -1817,7 +1817,7 @@ class S3Config(Storage):
             Whether or not to show a bulk-select option in location
             filter widgets (overrides per-widget setting)
         """
-        return self.ui.get("location_filter_bulk_select_option", None)
+        return self.__lazy(self.ui, "location_filter_bulk_select_option", None)
 
     def get_ui_inline_component_layout(self):
         """
@@ -2556,6 +2556,14 @@ class S3Config(Storage):
         """
         return self.hrm.get("use_trainings", True)
 
+    def get_hrm_training_instructors(self):
+        """
+            Whether to track "internal" training instructors (=persons
+            from the registry), or "external" (=just names), or "both",
+            ...or None (=don't track instructors at all)
+        """
+        return self.__lazy(self.hrm, "training_instructors", "external")
+
     def get_hrm_activity_types(self):
         """
             HRM Activity Types (for experience record),
@@ -2913,6 +2921,12 @@ class S3Config(Storage):
             else:
                 group = "60+"
         return group
+
+    def get_pr_hide_third_gender(self):
+        """
+            Whether to hide the third gender ("Other")
+        """
+        return self.__lazy(self.pr, "hide_third_gender", default=True)
 
     def get_pr_import_update_requires_email(self):
         """
@@ -3462,5 +3476,32 @@ class S3Config(Storage):
         elif default:
             append("template:default")
         return result
+
+    # -------------------------------------------------------------------------
+    @staticmethod
+    def __lazy(subset, key, default=None):
+        """
+            Resolve a "lazy" setting: when the config setting is callable,
+            call it once and store the result. A callable setting takes
+            the default value as parameter.
+
+            This method allows settings to depend on user authentication
+            (e.g. org-dependent variations), or involve database lookups,
+            which is only possible /after/ the initial config.py run.
+
+            Normal pattern:
+                return self.<subset>.get(key, default)
+
+            Lazy pattern:
+                return self.__lazy(self.<subset>, key, default)
+
+            @param subset: the subset of settings
+            @param key: the setting name
+            @param default: the default value
+        """
+        setting = subset.get(key, default)
+        if callable(setting):
+            setting = subset[key] = setting(default)
+        return setting
 
 # END =========================================================================
