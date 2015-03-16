@@ -1740,10 +1740,11 @@ def deploy_alert_select_recipients(r, **attr):
                              filter=member_query, vars=r.get_vars)
 
     # Filter widgets (including roster status)
-    filter_widgets = deploy_member_filter(status=True)
+    #filter_widgets = deploy_member_filter(status=True)
+    filter_widgets = resource.get_config("filter_widgets")
     if filter_widgets and representation == "html":
         # Apply filter defaults
-        resource.configure(filter_widgets = filter_widgets)
+        #resource.configure(filter_widgets = filter_widgets)
         S3FilterForm.apply_filter_defaults(r, resource)
 
     # List fields
@@ -1751,6 +1752,8 @@ def deploy_alert_select_recipients(r, **attr):
                    "person_id",
                    "job_title_id",
                    "organisation_id",
+                   "site_id",
+                   (T("Email"), "email.value"),
                    ]
 
     # Data table

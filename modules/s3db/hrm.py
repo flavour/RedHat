@@ -6652,10 +6652,11 @@ def hrm_human_resource_controller(extra_filter=None):
                     list_fields.append((T("Program"), "person_id$hours.programme_id"))
                     rappend((T("Program"), "person_id$hours.programme_id"))
             else:
-                list_fields.extend(("department_id",
+                list_fields.extend((#"department_id",
                                     "site_id"))
                 report_fields.extend(("site_id",
-                                      "department_id"))
+                                      #"department_id",
+                                      ))
 
             list_fields.extend(((T("Email"), "email.value"),
                                 (settings.get_ui_label_mobile_phone(), "phone.value")))
@@ -8485,15 +8486,6 @@ def hrm_human_resource_filters(resource_type=None,
                       ]
     append_filter = filter_widgets.append
 
-    # Type filter (only if not pre-filtered)
-    if not resource_type in ("staff", "volunteer"):
-        append_filter(S3OptionsFilter("type",
-                                      label = T("Type"),
-                                      options = hrm_type_opts,
-                                      cols = 2,
-                                      hidden = True,
-                                      ))
-
     # Region filter (only if using regions in template)
     if settings.get_org_regions():
         if settings.get_org_regions_hierarchical():
@@ -8525,10 +8517,10 @@ def hrm_human_resource_filters(resource_type=None,
                                           ))
 
     # Location filter (always)
-    append_filter(S3LocationFilter("location_id",
-                                   label = T("Location"),
-                                   hidden = True,
-                                   ))
+    #append_filter(S3LocationFilter("location_id",
+    #                               label = T("Location"),
+    #                               hidden = True,
+    #                               ))
 
     # Active Filter / Programme filter (volunteer only)
     if module == "vol" or resource_type == "volunteer":
@@ -8559,19 +8551,35 @@ def hrm_human_resource_filters(resource_type=None,
     else:
         # Site filter (staff only)
         filter_widgets.append(S3OptionsFilter("site_id",
-                                              hidden = True,
+                                              #hidden = True,
                                               ))
+
+    # Group (team) membership filter
+    teams = settings.get_hrm_teams()
+    if teams:
+        if teams == "Teams":
+            teams = "Team"
+        elif teams == "Groups":
+            teams = "Group"
+        append_filter(S3OptionsFilter("group_membership.group_id",
+                                      label = T(teams),
+                                      hidden = True,
+                                      ))
+
+    append_filter(S3OptionsFilter("job_title_id",
+                                  hidden = True,
+                                  ))
 
     if module == "deploy":
         # Deployment-specific filters
 
         # Job title filter
-        append_filter(S3OptionsFilter("credential.job_title_id",
-                                      # @ToDo: deployment_setting for label (this is RDRT-specific)
-                                      #label = T("Credential"),
-                                      label = T("Sector"),
-                                      hidden = True,
-                                      ))
+        #append_filter(S3OptionsFilter("credential.job_title_id",
+        #                              # @ToDo: deployment_setting for label (this is RDRT-specific)
+        #                              #label = T("Credential"),
+        #                              label = T("Sector"),
+        #                              hidden = True,
+        #                              ))
 
         # Last-deployment-date filter
         append_filter(S3DateFilter("human_resource_id:deploy_assignment.start_date",
@@ -8598,18 +8606,6 @@ def hrm_human_resource_filters(resource_type=None,
     if settings.get_hrm_use_certificates():
         append_filter(S3OptionsFilter("certification.certificate_id",
                                       label = T("Certificate"),
-                                      hidden = True,
-                                      ))
-
-    # Group (team) membership filter
-    teams = settings.get_hrm_teams()
-    if teams:
-        if teams == "Teams":
-            teams = "Team"
-        elif teams == "Groups":
-            teams = "Group"
-        append_filter(S3OptionsFilter("group_membership.group_id",
-                                      label = T(teams),
                                       hidden = True,
                                       ))
 

@@ -77,7 +77,7 @@ def mission():
             s3.cancel = r.url(method="summary", component=None, id=0)
             if not r.component and \
                r.get_vars.get("~.status__belongs") == "2":
-                s3.crud_strings[r.tablename]["title_list"] = T("Active Missions")
+                s3.crud_strings[r.tablename]["title_list"] = T("Active Incidents")
         return True
     s3.prep = prep
 
@@ -623,7 +623,7 @@ def email_inbox():
             authorised = auth.s3_has_permission("create", "deploy_response")
             if authorised:
                 s3.rfooter = s3base.S3CRUD.crud_button(
-                                        T("Link to Mission"),
+                                        T("Link to Incident"),
                                         _href=URL(f="email_inbox",
                                                   args=[r.id, "select"],
                                                   ),

@@ -963,9 +963,8 @@ span.tab_next_inactive a {
 .box_top,
 .box_top_inner {
    border-top: #bbb 1px solid;
-}
-.box_top {
-   padding-top: 8px;
+   margin-left:0;
+   margin-right:0;
 }
 form table td.box_top_td {
     padding-top: 8px;
@@ -975,7 +974,6 @@ form table td.box_top_td {
 .box_top_inner label {
     display: block;
     /* @ToDo: Move colour out of widgets.css */
-    background-color: #fbfbfb;
     float: left;
     margin-top: -6px;
     margin-left: 50px;
