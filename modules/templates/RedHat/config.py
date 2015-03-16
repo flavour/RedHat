@@ -122,6 +122,11 @@ def config(settings):
     #
     #settings.security.policy = 7 # Organisation-ACLs
 
+    # -----------------------------------------------------------------------------
+    # Messaging
+    # Parser
+    settings.msg.parser = "IFRC"
+
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py
