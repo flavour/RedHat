@@ -670,10 +670,10 @@ class S3OptionsMenu(object):
     def deploy():
         """ Deployments """
 
-        return M()(M("Missions",
+        return M()(M("Incidents",
                      c="deploy", f="mission", m="summary")(
                         M("Create", m="create"),
-                        M("Active Missions", m="summary",
+                        M("Active Incidents", m="summary",
                           vars={"~.status__belongs": "2"}),
                    ),
                    M("Alerts",

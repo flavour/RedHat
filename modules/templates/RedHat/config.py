@@ -123,6 +123,10 @@ def config(settings):
     #settings.security.policy = 7 # Organisation-ACLs
 
     # -----------------------------------------------------------------------------
+    settings.hrm.use_trainings = False
+    settings.hrm.use_certificates = False
+
+    # -----------------------------------------------------------------------------
     # Messaging
     # Parser
     settings.msg.parser = "IFRC"
@@ -177,7 +181,7 @@ def config(settings):
             name_nice = T("Map"),
             #description = "Situation Awareness & Geospatial Analysis",
             restricted = True,
-            module_type = 4,     # 6th item in the menu
+            module_type = 5,     # 6th item in the menu
         )),
         ("pr", Storage(
             name_nice = T("Person Registry"),
@@ -190,13 +194,13 @@ def config(settings):
             name_nice = T("Offices"),
             #description = 'Lists "who is doing what & where". Allows relief agencies to coordinate their activities',
             restricted = True,
-            module_type = 2
+            module_type = 3
         )),
         ("hrm", Storage(
             name_nice = T("Staff"),
             #description = "Human Resources Management",
             restricted = True,
-            module_type = 3,
+            module_type = 4,
         )),
         #("vol", Storage(
         #    name_nice = T("Volunteers"),
@@ -221,7 +225,7 @@ def config(settings):
             #description = "Sends & Receives Alerts via Email & SMS",
             restricted = True,
             # The user-visible functionality of this module isn't normally required. Rather it's main purpose is to be accessed from other modules.
-            module_type = 10,
+            module_type = 2,
         )),
         #("supply", Storage(
         #    name_nice = T("Supply Chain Management"),

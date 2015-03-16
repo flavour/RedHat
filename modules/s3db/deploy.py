@@ -336,17 +336,17 @@ class S3DeploymentModel(S3Model):
 
         # CRUD Strings
         crud_strings[tablename] = Storage(
-            label_create = T("Create Mission"),
-            title_display = T("Mission"),
-            title_list = T("Missions"),
-            title_update = T("Edit Mission Details"),
-            title_upload = T("Import Missions"),
-            label_list_button = T("List Missions"),
-            label_delete_button = T("Delete Mission"),
-            msg_record_created = T("Mission added"),
-            msg_record_modified = T("Mission Details updated"),
-            msg_record_deleted = T("Mission deleted"),
-            msg_list_empty = T("No Missions currently registered"))
+            label_create = T("Create Incident"),
+            title_display = T("Incident"),
+            title_list = T("Incidents"),
+            title_update = T("Edit Incident Details"),
+            title_upload = T("Import Incidents"),
+            label_list_button = T("List Incidents"),
+            label_delete_button = T("Delete Incident"),
+            msg_record_created = T("Incident added"),
+            msg_record_modified = T("Incident Details updated"),
+            msg_record_deleted = T("Incident deleted"),
+            msg_list_empty = T("No Incidents currently registered"))
 
         # Reusable field
         represent = S3Represent(lookup = tablename,
@@ -355,7 +355,7 @@ class S3DeploymentModel(S3Model):
                                 show_link = True)
 
         mission_id = S3ReusableField("mission_id", "reference %s" % tablename,
-                                     label = T("Mission"),
+                                     label = T("Incident"),
                                      ondelete = "CASCADE",
                                      represent = represent,
                                      requires = IS_ONE_OF(db,
@@ -1403,7 +1403,7 @@ class deploy_Inbox(S3Method):
 
         if r.representation == "html":
             # Action buttons
-            s3.actions = [{"label": str(T("Link to Mission")),
+            s3.actions = [{"label": str(T("Link to Incident")),
                            "_class": "action-btn link",
                            "url": URL(f="email_inbox", args=["[id]", "select"]),
                            },
@@ -1740,10 +1740,11 @@ def deploy_alert_select_recipients(r, **attr):
                              filter=member_query, vars=r.get_vars)
 
     # Filter widgets (including roster status)
-    filter_widgets = deploy_member_filter(status=True)
+    #filter_widgets = deploy_member_filter(status=True)
+    filter_widgets = resource.get_config("filter_widgets")
     if filter_widgets and representation == "html":
         # Apply filter defaults
-        resource.configure(filter_widgets = filter_widgets)
+        #resource.configure(filter_widgets = filter_widgets)
         S3FilterForm.apply_filter_defaults(r, resource)
 
     # List fields
@@ -1751,6 +1752,8 @@ def deploy_alert_select_recipients(r, **attr):
                    "person_id",
                    "job_title_id",
                    "organisation_id",
+                   "site_id",
+                   (T("Email"), "email.value"),
                    ]
 
     # Data table
@@ -1933,7 +1936,7 @@ def deploy_response_select_mission(r, **attr):
         #                          args=[mission_id, "profile"])))
         #current.session.confirmation = T("Response linked to %(mission)s") % \
         #                                    dict(mission=mission)
-        current.session.confirmation = T("Response linked to Mission")
+        current.session.confirmation = T("Response linked to Incident")
         redirect(URL(c="deploy", f="email_inbox"))
 
     settings = current.deployment_settings
@@ -1993,7 +1996,7 @@ def deploy_response_select_mission(r, **attr):
             action_vars["hr_id"] = hr_id
 
         s3 = response.s3
-        s3.actions = [dict(label=str(T("Select Mission")),
+        s3.actions = [dict(label=str(T("Select Incident")),
                            _class="action-btn",
                            url=URL(f="email_inbox",
                                    args=[r.id, "select"],
@@ -2048,7 +2051,7 @@ def deploy_response_select_mission(r, **attr):
             ff = ""
 
         output = dict(items=items,
-                      title=T("Select Mission"),
+                      title=T("Select Incident"),
                       list_filter_form=ff)
 
         # Add RHeader
