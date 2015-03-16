@@ -131,6 +131,9 @@ def config(settings):
     # Parser
     settings.msg.parser = "IFRC"
 
+    # Set the label for Sites
+    settings.org.site_label = "Office"
+
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
     # Modules menu is defined in modules/eden/menu.py
@@ -194,13 +197,13 @@ def config(settings):
             name_nice = T("Offices"),
             #description = 'Lists "who is doing what & where". Allows relief agencies to coordinate their activities',
             restricted = True,
-            module_type = 3
+            module_type = 4
         )),
         ("hrm", Storage(
             name_nice = T("Staff"),
             #description = "Human Resources Management",
             restricted = True,
-            module_type = 4,
+            module_type = 3,
         )),
         #("vol", Storage(
         #    name_nice = T("Volunteers"),
@@ -289,7 +292,7 @@ def config(settings):
             module_type = 10,
         )),
         ("deploy", Storage(
-               name_nice = T("Broadcasts"),
+               name_nice = T("Incidents"),
                #description = "Alerting and Deployment of Disaster Response Teams",
                restricted = True,
                module_type = 1,
