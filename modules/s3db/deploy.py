@@ -82,7 +82,7 @@ class S3DeploymentModel(S3Model):
         human_resource_id = self.hrm_human_resource_id
 
         # ---------------------------------------------------------------------
-        # Mission
+        # Incident
         #
         mission_status_opts = {1 : T("Closed"),
                                2 : T("Open")
@@ -160,7 +160,7 @@ class S3DeploymentModel(S3Model):
                                     )
 
         # Profile
-        list_layout = deploy_MissionProfileLayout()
+        list_layout = deploy_IncidentProfileLayout()
         alert_widget = dict(label = "Alerts",
                             insert = lambda r, list_id, title, url: \
                                    A(title,
@@ -336,17 +336,17 @@ class S3DeploymentModel(S3Model):
 
         # CRUD Strings
         crud_strings[tablename] = Storage(
-            label_create = T("Create Mission"),
-            title_display = T("Mission"),
-            title_list = T("Missions"),
-            title_update = T("Edit Mission Details"),
-            title_upload = T("Import Missions"),
-            label_list_button = T("List Missions"),
-            label_delete_button = T("Delete Mission"),
-            msg_record_created = T("Mission added"),
-            msg_record_modified = T("Mission Details updated"),
-            msg_record_deleted = T("Mission deleted"),
-            msg_list_empty = T("No Missions currently registered"))
+            label_create = T("Create Incident"),
+            title_display = T("Incident"),
+            title_list = T("Incidents"),
+            title_update = T("Edit Incident Details"),
+            title_upload = T("Import Incidents"),
+            label_list_button = T("List Incidents"),
+            label_delete_button = T("Delete Incident"),
+            msg_record_created = T("Incident added"),
+            msg_record_modified = T("Incident Details updated"),
+            msg_record_deleted = T("Incident deleted"),
+            msg_list_empty = T("No Incidents currently registered"))
 
         # Reusable field
         represent = S3Represent(lookup = tablename,
@@ -355,7 +355,7 @@ class S3DeploymentModel(S3Model):
                                 show_link = True)
 
         mission_id = S3ReusableField("mission_id", "reference %s" % tablename,
-                                     label = T("Mission"),
+                                     label = T("Incident"),
                                      ondelete = "CASCADE",
                                      represent = represent,
                                      requires = IS_ONE_OF(db,
@@ -408,7 +408,7 @@ class S3DeploymentModel(S3Model):
                            ),
                      # These get copied to hrm_experience
                      # rest of fields may not be filled-out, but are in attachments
-                     s3_date("start_date", # Only field visible when deploying from Mission profile
+                     s3_date("start_date", # Only field visible when deploying from Incident profile
                              label = T("Start Date"),
                              ),
                      s3_date("end_date",
@@ -915,7 +915,7 @@ class S3DeploymentAlertModel(S3Model):
 
         T = current.T
         record = r.record
-        # Always redirect to the Mission Profile
+        # Always redirect to the Incident Profile
         mission_id = record.mission_id
         next_url = URL(f="mission", args=[mission_id, "profile"])
 
@@ -1021,7 +1021,7 @@ class S3DeploymentAlertModel(S3Model):
 
         db(table.id == alert_id).update(**data)
 
-        # Return to the Mission Profile
+        # Return to the Incident Profile
         current.session.confirmation = T("Alert Sent")
         redirect(next_url)
 
@@ -1403,7 +1403,7 @@ class deploy_Inbox(S3Method):
 
         if r.representation == "html":
             # Action buttons
-            s3.actions = [{"label": str(T("Link to Mission")),
+            s3.actions = [{"label": str(T("Link to Incident")),
                            "_class": "action-btn link",
                            "url": URL(f="email_inbox", args=["[id]", "select"]),
                            },
@@ -1870,7 +1870,7 @@ def deploy_alert_select_recipients(r, **attr):
 # =============================================================================
 def deploy_response_select_mission(r, **attr):
     """
-        Custom method to Link a Response to a Mission &/or Human Resource
+        Custom method to Link a Response to a Incident &/or Human Resource
     """
 
     message_id = r.record.message_id if r.record else None
@@ -1920,7 +1920,7 @@ def deploy_response_select_mission(r, **attr):
                                                         limitby=(0, 1)
                                                         ).first().doc_id
             for a in atts:
-                # Link to Mission
+                # Link to Incident
                 document_id = a.id
                 ltable.insert(mission_id = mission_id,
                               message_id = message_id,
@@ -1928,12 +1928,12 @@ def deploy_response_select_mission(r, **attr):
                 if hr_id:
                     db(dtable.id == document_id).update(doc_id = doc_id)
 
-        #mission = XML(A(T("Mission"),
+        #mission = XML(A(T("Incident"),
         #                _href=URL(c="deploy", f="mission",
         #                          args=[mission_id, "profile"])))
         #current.session.confirmation = T("Response linked to %(mission)s") % \
         #                                    dict(mission=mission)
-        current.session.confirmation = T("Response linked to Mission")
+        current.session.confirmation = T("Response linked to Incident")
         redirect(URL(c="deploy", f="email_inbox"))
 
     settings = current.deployment_settings
@@ -1993,7 +1993,7 @@ def deploy_response_select_mission(r, **attr):
             action_vars["hr_id"] = hr_id
 
         s3 = response.s3
-        s3.actions = [dict(label=str(T("Select Mission")),
+        s3.actions = [dict(label=str(T("Select Incident")),
                            _class="action-btn",
                            url=URL(f="email_inbox",
                                    args=[r.id, "select"],
@@ -2048,7 +2048,7 @@ def deploy_response_select_mission(r, **attr):
             ff = ""
 
         output = dict(items=items,
-                      title=T("Select Mission"),
+                      title=T("Select Incident"),
                       list_filter_form=ff)
 
         # Add RHeader
@@ -2065,7 +2065,7 @@ def deploy_response_select_mission(r, **attr):
             title = T("Select Member")
             label = "%s:" % title
             field = s3db.deploy_response.human_resource_id
-            # @ToDo: Get fancier & auto-click if there is just a single Mission
+            # @ToDo: Get fancier & auto-click if there is just a single Incident
             script = \
 '''S3.update_links=function(){
  var value=$('#deploy_response_human_resource_id').val()
@@ -2141,14 +2141,14 @@ def deploy_response_select_mission(r, **attr):
         r.error(501, current.ERROR.BAD_FORMAT)
 
 # =============================================================================
-class deploy_MissionProfileLayout(S3DataListLayout):
-    """ DataList layout for Mission Profile """
+class deploy_IncidentProfileLayout(S3DataListLayout):
+    """ DataList layout for Incident Profile """
 
     # -------------------------------------------------------------------------
     def __init__(self, profile="deploy_mission"):
         """ Constructor """
 
-        super(deploy_MissionProfileLayout, self).__init__(profile=profile)
+        super(deploy_IncidentProfileLayout, self).__init__(profile=profile)
 
         self.dcount = {}
         self.avgrat = {}

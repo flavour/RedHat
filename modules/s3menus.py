@@ -670,10 +670,10 @@ class S3OptionsMenu(object):
     def deploy():
         """ Deployments """
 
-        return M()(M("Missions",
+        return M()(M("Incidents",
                      c="deploy", f="mission", m="summary")(
                         M("Create", m="create"),
-                        M("Active Missions", m="summary",
+                        M("Active Incidents", m="summary",
                           vars={"~.status__belongs": "2"}),
                    ),
                    M("Alerts",
@@ -687,21 +687,21 @@ class S3OptionsMenu(object):
                           p="update", t="msg_email_channel",
                           ),
                    ),
-                   M("Assignments",
-                     c="deploy", f="assignment", m="summary"
-                   ),
-                   M("Job Titles",
-                     c="deploy", f="job_title"
-                   ),
-                   M("Human Resources",
-                     c="deploy", f="human_resource", m="summary")(
-                        M("Add Deployables",
-                          c="deploy", f="application", m="select",
-                          p="create", t="deploy_application",
-                          ),
-                        M("Import Human Resources",
-                          c="deploy", f="person", m="import"),
-                   ),
+                   #M("Assignments",
+                   #  c="deploy", f="assignment", m="summary"
+                   #),
+                   #M("Job Titles",
+                   #  c="deploy", f="job_title"
+                   #),
+                   #M("Human Resources",
+                   #  c="deploy", f="human_resource", m="summary")(
+                   #     M("Add Deployables",
+                   #       c="deploy", f="application", m="select",
+                   #       p="create", t="deploy_application",
+                   #       ),
+                   #     M("Import Human Resources",
+                   #       c="deploy", f="person", m="import"),
+                   #),
                   )
 
     # -------------------------------------------------------------------------
