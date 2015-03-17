@@ -577,7 +577,7 @@ class GIS(object):
 
         try:
             results = g.geocode(location, exactly_one=False)
-            if len(results) == 1:
+            if results:
                 place, (lat, lon) = results[0]
                 if Lx:
                     output = None

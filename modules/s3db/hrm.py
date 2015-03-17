@@ -6653,7 +6653,7 @@ def hrm_human_resource_controller(extra_filter=None):
                     rappend((T("Program"), "person_id$hours.programme_id"))
             else:
                 list_fields.extend((#"department_id",
-                                    "site_id"))
+                                    "site_id",))
                 report_fields.extend(("site_id",
                                       #"department_id",
                                       ))

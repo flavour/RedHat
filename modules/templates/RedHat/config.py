@@ -120,7 +120,7 @@ def config(settings):
     # 7: Apply Controller, Function, Table ACLs and Entity Realm + Hierarchy
     # 8: Apply Controller, Function, Table ACLs, Entity Realm + Hierarchy and Delegations
     #
-    #settings.security.policy = 7 # Organisation-ACLs
+    settings.security.policy = 7 # Organisation-ACLs
 
     # -----------------------------------------------------------------------------
     settings.hrm.use_trainings = False
@@ -130,6 +130,7 @@ def config(settings):
     # Messaging
     # Parser
     settings.msg.parser = "IFRC"
+    settings.gis.geocode_imported_addresses = "google"
 
     # -------------------------------------------------------------------------
     # Comment/uncomment modules here to disable/enable them
