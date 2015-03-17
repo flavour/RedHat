@@ -130,7 +130,8 @@ def config(settings):
     # Messaging
     # Parser
     settings.msg.parser = "IFRC"
-    settings.gis.geocode_imported_addresses = "google"
+    # Fails too often - better to do once offline & then add Lat/Lons to prepop instead
+    #settings.gis.geocode_imported_addresses = "google"
 
     # Set the label for Sites
     settings.org.site_label = "Office"

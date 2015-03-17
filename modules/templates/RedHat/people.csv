@@ -2,7 +2,7 @@ Type,Sex,First Name,Last Name,Email,Job Title,Initials,Mobile Phone,Organisation
 Staff,male,Christopher,Heineman,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,+12125117975,Business Continuity,United States,Corporate headquarters
 Staff,male,Andy,Sakai,test@sahanafoundation.org,Software Developer,,,Red Hat,+12122936982,,United States,Corporate headquarters
 Staff,female,Christine,Rathan,test@sahanafoundation.org,Solutions Architect,,,Red Hat,+912164358068,,India,Mumbai
-Staff,,Ai,Grimes,test@sahanafoundation.org,Cloud Storage Solutions Architect,,+491234567890,Red Hat,0212 252 44 33,,Germany,Frankfurt
+Staff,,Ai,Grimes,test@sahanafoundation.org,Cloud Storage Solutions Architect,,+491234567890,Red Hat,+492122524433,,Germany,Frankfurt
 Staff,male,Carl,Cardenas,test@sahanafoundation.org,Logistics Administrator,,,Red Hat,+622327251200,Logistics,Indonesia,Indonesia
 Staff,male,Jim,Paul,test@sahanafoundation.org,Office Manager,,,Red Hat,+621678090880,"Business Continuity, Logistics",Indonesia,Indonesia
 Staff,female,Caroline,Enzen,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,+912163362262,Business Continuity,India,Mumbai
@@ -19,4 +19,4 @@ Staff,male,Anupam,Sakai,test@sahanafoundation.org,Logistics Administrator,,,Adob
 Staff,female,Vanessa,Mazariegos,test@sahanafoundation.org,Office Manager,,,Adobe,+15074257770,Business Continuity,United States,Adobe Head Office
 Staff,female,Vitalicia,Jose Galvez,test@sahanafoundation.org,Business Continuity Analyst,,,Cigna,,,United States,Cigna Head Office
 Staff,female,Azalia,Rene Galvez,test@sahanafoundation.org,Software Developer,,,Cigna,,,United States,Cigna Head Office
-Staff,male,Michael,Howden,michael@sahanafoundation.org,CEO,,64211261360,Sahana,,,New Zealand,Sahana Head Office
+Staff,male,Michael,Howden,michael@sahanafoundation.org,CEO,,+64211261360,Sahana,,,New Zealand,Sahana Head Office
