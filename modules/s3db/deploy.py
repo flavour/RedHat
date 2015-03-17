@@ -794,6 +794,9 @@ class S3DeploymentAlertModel(S3Model):
                                  "contact_method",
                                  "subject",
                                  "body",
+                                 "created_on",
+                                 "created_by",
+                                 "mission_id",
                                  "alert_recipient.human_resource_id",
                                  ],
                   )

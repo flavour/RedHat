@@ -1,24 +1,22 @@
 Type,Sex,First Name,Last Name,Email,Job Title,Initials,Mobile Phone,Organisation,Office Phone,Teams, Office Country,Office
-Staff,male,Christopher,Heineman,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,212-5117975,Business Continuity,United States,United States
-Staff,male,Andy,Sakai,test@sahanafoundation.org,Software Developer,,,Red Hat,212 2936982,,United States,United States
-Staff,female,Christine,Rathan,test@sahanafoundation.org,Solutions Architect,,,Red Hat,2164358068,,India,India
-Staff,,Ai,Grimes,test@sahanafoundation.org,Cloud Storage Solutions Architect,,+1234567890,Red Hat,0212 252 44 33,,Germany,Germany
+Staff,male,Christopher,Heineman,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,212-5117975,Business Continuity,United States,Corporate headquarters
+Staff,male,Andy,Sakai,test@sahanafoundation.org,Software Developer,,,Red Hat,212 2936982,,United States,Corporate headquarters
+Staff,female,Christine,Rathan,test@sahanafoundation.org,Solutions Architect,,,Red Hat,2164358068,,India,Mumbai
+Staff,,Ai,Grimes,test@sahanafoundation.org,Cloud Storage Solutions Architect,,1234567890,Red Hat,0212 252 44 33,,Germany,Frankfurt
 Staff,male,Carl,Cardenas,test@sahanafoundation.org,Logistics Administrator,,,Red Hat,0232-7251200,Logistics,Indonesia,Indonesia
 Staff,male,Jim,Paul,test@sahanafoundation.org,Office Manager,,,Red Hat,0216 709 08 80,"Business Continuity, Logistics",Indonesia,Indonesia
-Staff,female,Caroline,Enzen,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,2163362262,Business Continuity,India,India
-Staff,,Pam,Baxendale,test@sahanafoundation.org,Software Developer,,,Red Hat,212.251 58 50,,Germany,Germany
+Staff,female,Caroline,Enzen,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,2163362262,Business Continuity,India,Mumbai
+Staff,,Pam,Baxendale,test@sahanafoundation.org,Software Developer,,,Red Hat,212.251 58 50,,Germany,Frankfurt
 Staff,male,Dick,Dailey,test@sahanafoundation.org,Solutions Architect,,,Red Hat,0 216 521 8080,,Indonesia,Indonesia
-Staff,male,Randy,Li,test@sahanafoundation.org,Cloud Storage Solutions Architect,,,Red Hat,212 296 54 90,,United States,United States
-Staff,male,Adrian,Lundquist,test@sahanafoundation.org,Logistics Administrator,,,Red Hat,2125344133,Logistics,United States,United States
-Staff,female,Ada,Finn,test@sahanafoundation.org,Office Manager,,,Red Hat,5062090559,"Business Continuity, Logistics",United States,United States
-Staff,male,Adam,Reichel,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,2164289666,Business Continuity,United States,United States
-Staff,male,Charles,Robinson,test@sahanafoundation.org,Software Developer,,,Red Hat,2122828916,,United States,United States
-Staff,male,Adrian,Johnson,test@sahanafoundation.org,Solutions Architect,,,Red Hat,5076813000,,United States,United States
-Staff,male,Alex,Sabihon,test@sahanafoundation.org,Cloud Storage Solutions Architect,,,Adobe,0 312 425 67 65,,United States,United States
-Staff,male,Anupam,Sakai,test@sahanafoundation.org,Logistics Administrator,,,Adobe,(0212) 533 65 32/1219,"Business Continuity, Logistics",United States,United States
-Staff,female,Vanessa,Mazariegos,test@sahanafoundation.org,Office Manager,,,Adobe,5074257770,Business Continuity,United States,United States
-Staff,female,Vitalicia,Jose Galvez,test@sahanafoundation.org,Business Continuity Analyst,,,Cigna,,,United States,United States
-Staff,female,Azalia,Rene Galvez,test@sahanafoundation.org,Software Developer,,,Cigna,,,United States,United States
-Staff,male,Michael,Howden,michael@sahanafoundation.org,CEO,,+64211261360,Sahana,,,New Zealand,New Zealand
-,,,,,,,,,,,,
-,,,,,,,,,,,,
+Staff,male,Randy,Li,test@sahanafoundation.org,Cloud Storage Solutions Architect,,,Red Hat,212 296 54 90,,United States,Corporate headquarters
+Staff,male,Adrian,Lundquist,test@sahanafoundation.org,Logistics Administrator,,,Red Hat,2125344133,Logistics,United States,Corporate headquarters
+Staff,female,Ada,Finn,test@sahanafoundation.org,Office Manager,,,Red Hat,5062090559,"Business Continuity, Logistics",United States,Corporate headquarters
+Staff,male,Adam,Reichel,test@sahanafoundation.org,Business Continuity Analyst,,,Red Hat,2164289666,Business Continuity,United States,Corporate headquarters
+Staff,male,Charles,Robinson,test@sahanafoundation.org,Software Developer,,,Red Hat,2122828916,,United States,Corporate headquarters
+Staff,male,Adrian,Johnson,test@sahanafoundation.org,Solutions Architect,,,Red Hat,5076813000,,United States,Corporate headquarters
+Staff,male,Alex,Sabihon,test@sahanafoundation.org,Cloud Storage Solutions Architect,,,Adobe,0 312 425 67 65,,United States,Adobe Head Office
+Staff,male,Anupam,Sakai,test@sahanafoundation.org,Logistics Administrator,,,Adobe,(0212) 533 65 32/1219,"Business Continuity, Logistics",United States,Adobe Head Office
+Staff,female,Vanessa,Mazariegos,test@sahanafoundation.org,Office Manager,,,Adobe,5074257770,Business Continuity,United States,Adobe Head Office
+Staff,female,Vitalicia,Jose Galvez,test@sahanafoundation.org,Business Continuity Analyst,,,Cigna,,,United States,Cigna Head Office
+Staff,female,Azalia,Rene Galvez,test@sahanafoundation.org,Software Developer,,,Cigna,,,United States,Cigna Head Office
+Staff,male,Michael,Howden,michael@sahanafoundation.org,CEO,,64211261360,Sahana,,,New Zealand,Sahana Head Office

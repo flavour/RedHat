@@ -1449,11 +1449,11 @@ class S3OptionsMenu(object):
                              else "Sectors"
 
         return M(c="org")(
-                    M("Organizations", f="organisation")(
+                    M("Organizations", f="organisation", m="summary")(
                         M("Create", m="create"),
                         M("Import", m="import")
                     ),
-                    M("Offices", f="office")(
+                    M("Offices", f="office", m="summary")(
                         M("Create", m="create"),
                         M("Map", m="map"),
                         M("Import", m="import")

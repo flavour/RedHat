@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 /* Home page specific */
@@ -21,7 +22,7 @@ i.menu {
     margin-bottom: -0.5rem;
 }
 
-.menu_buttons {
+#home_menu {
     text-align: center;
 }
 
